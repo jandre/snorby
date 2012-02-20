@@ -46,7 +46,7 @@ module Snorby
 
 
       def self.included(base)
-
+        
         adapter_type = DataMapper.repository.adapter.options[:adapter]
 
         base.module_eval do
@@ -64,5 +64,10 @@ module Snorby
         end
 
       end
+
+      class SqlHelper
+        include Snorby::Sql
+      end
+      
   end
 end

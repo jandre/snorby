@@ -16,6 +16,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+require 'snorby/sql'
+
 module Snorby
   
   module Report
@@ -49,11 +51,11 @@ module Snorby
       @favers = User.all(:limit => 5, :order => [:favorites_count.desc])
 
       @last_cache = @cache.get_last ? @cache.get_last.ran_at : Time.now
+     
+      @sql = Snorby::Sql::SqlHelper.new
 
-      sigs = Event.all(:limit => 5, :order => [:timestamp.desc], 
-                       :fields => [:sig_id], 
-                       :unique => true).map(&:signature).map(&:sig_id)
-
+      sigs = @sql.latest_five_distinct_signatures
+    
       @recent_events = Event.all(:sig_id => sigs).group_by do |x| 
         x.sig_id 
       end.map(&:last).map(&:first)
