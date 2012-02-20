@@ -1,6 +1,11 @@
+
+require 'snorby/sql'
+
 class PageController < ApplicationController
 
   helper_method :sort_column, :sort_direction, :sort_page
+
+  include Snorby::Sql 
 
   def dashboard
     @now = Time.now
@@ -35,10 +40,12 @@ class PageController < ApplicationController
     @favers = User.all(:limit => 5, :order => [:favorites_count.desc])
 
     @last_cache = @cache.cache_time
-
-    sigs = Event.all(:limit => 5, :order => [:timestamp.desc], :fields => [:sig_id], :unique => true).map(&:signature).map(&:sig_id)
+    
+    sigs = latest_five_distinct_signatures
+    
     @recent_events = [];
-    sigs.each{|s| @recent_events << Event.last(:sig_id => s) }
+    
+    sigs.each{|s| @recent_events << Event.last(:sig_id => s.to_i )}
 
     respond_to do |format|
       format.html # { render :template => 'page/dashboard.pdf.erb', :layout => 'pdf.html.erb' }
