@@ -11,7 +11,6 @@ gem 'rails',                       RAILS_VERSION
 gem 'jquery-rails'
 gem 'bundler',                     '~> 1.0.0'
 
-
 # DateTime Patches
 gem 'home_run',                    :require => 'date'
 
@@ -24,7 +23,7 @@ gem 'dm-rails',                    DM_VERSION
 gem 'dm-do-adapter',               DM_VERSION
 gem 'dm-active_model',             DM_VERSION
 gem 'dm-mysql-adapter',            DM_VERSION
-gem 'dm-postgres-adapter',         DM_VERSION
+
 gem 'dm-pager',                    '~> 1.1.0'
 gem 'dm-migrations',               DM_VERSION
 gem 'dm-types',                    DM_VERSION

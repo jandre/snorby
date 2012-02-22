@@ -1,3 +1,19 @@
+# Snorby 2.4.0
+
+  * New Signature Listing View
+  * New Global Event Notification Option
+  * New Snorby Update Notification Option
+    - NOTICE: This will make a request to http://snorby.org/version for
+      current release metrics.
+  
+  * Minor UI/Design Improvements
+  * Minor bug fixes and performance enhancements
+  * rake snorby:(setup/update) start worker and adds jobs by default
+  * Force cache now done using ajax request
+  * GeoIP database removed from repo - Download via worker/job
+
+  ** NOTE: remember to run `bundle exec rake snorby:update`
+
 # Snorby 2.3.14
 
   * Major Cache refactor <3
