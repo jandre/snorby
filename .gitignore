@@ -38,3 +38,6 @@ config/database.yml
 config/snorby.yml
 config/snorby-geoip.dat
 snorby.war
+
+# Ignore Certs
+config/certs/*
