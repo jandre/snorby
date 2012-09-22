@@ -9,7 +9,8 @@ load "config/recipes/snorby"
 load "config/recipes/suricata"
 load "config/recipes/barnyard2"
 
-set(:deploy_server, Capistrano::CLI.ui.ask("Hostname of server to deploy to: ")) 
+deploy_server = ARGV[0]
+set(:deploy_server, Capistrano::CLI.ui.ask("Hostname of server to deploy to: ")) unless deploy_server
 server "#{deploy_server}", :web, :app, :db, primary: true
 
 set :user, 'deploy'

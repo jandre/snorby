@@ -4,7 +4,8 @@ namespace :barnyard2 do
     run "wget http://www.securixlive.com/download/barnyard2/barnyard2-1.9.tar.gz"
     run "tar zxvf barnyard2-1.9.tar.gz"
     run "cd barnyard2-1.9 && ./configure --with-mysql --with-mysql-libraries=/usr/lib/i386-linux-gnu && make && #{sudo} make install"
-    run "#{sudo} mkdir /var/log/barnyard2"
+
+    run "test -d /var/log/barnyard2 || #{sudo} mkdir /var/log/barnyard2" 
   end
   after "deploy:install", "barnyard2:install"
 
