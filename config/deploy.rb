@@ -9,8 +9,7 @@ load "config/recipes/snorby"
 load "config/recipes/suricata"
 load "config/recipes/barnyard2"
 
-deploy_server = ARGV[0]
-set(:deploy_server, Capistrano::CLI.ui.ask("Hostname of server to deploy to: ")) unless deploy_server
+set(:deploy_server, Capistrano::CLI.ui.ask("Hostname of server to deploy to: "))
 server "#{deploy_server}", :web, :app, :db, primary: true
 
 set :user, 'deploy'
@@ -22,7 +21,7 @@ set :use_sudo, false
 
 set :scm, :git
 set :repository, "git://github.com/Snorby/snorby.git"
-set :branch, "cloud"
+set :branch, "master"
 
 default_run_options[:pty] = true
 
